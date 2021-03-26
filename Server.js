@@ -5,7 +5,7 @@ import bodyParser from 'body-parser'
 import path from 'path'
 import morgan from 'morgan'
 import cookieParser from 'cookie-parser'
-import userRouter from "./Routes/UserRoute.js";
+import recipeRouter from "./Routes/RecipeRoutes.js";
 
 dotenv.config();
 
@@ -13,6 +13,8 @@ const PORT = process.env.PORT || 5000;
 const DBC = process.env.DB_CONNECT;
 
 const app = express();
+
+mongoose.set('useCreateIndex', true);
 
 mongoose.connect(DBC, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false}).then(() => {
     console.log(`Successfully connected to mongoose database.`)
@@ -29,7 +31,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 
 //app.use('/client', clientRouter);
-app.use('/user', userRouter)
+app.use('/recipe', recipeRouter)
 
 const dir = path.resolve(path.dirname(''));
 

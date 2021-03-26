@@ -1,16 +1,21 @@
 import mongoose from 'mongoose';
 
+const decimal = mongoose.Types.Decimal128;
+
 const recipeSchema = new mongoose.Schema({
-    Name: {type:String, required:true},
-    Umami: {type: Number, required:true},
-    Bitter: {type: Number, required:true},
-    Sour: {type: Number, required:true},
-    Salty: {type: Number, required:true},
-    Sweet: {type: Number, required:true},
-    Description : {type: String, required: true},
+    Name: {type:String, required:true, index: true},
+    Umami: { calcValue: {type:Number, required: true} , realValue : {type:decimal} },
+    Bitter: { calcValue: {type:Number, required: true} , realValue : {type:decimal} },
+    Sour: { calcValue: {type:Number, required: true} , realValue : {type:decimal} },
+    Salty: { calcValue: {type:Number, required: true} , realValue : {type:decimal} },
+    Sweet: { calcValue: {type:Number, required: true} , realValue : {type:decimal} },
+    Description : {type: String, required: false},
     Ingredients: {type: Array, required: false},
-    Recipe: {type: String, required: false},
-    Clicks: {type:String, required: true, default:0}
+    Recipe: {type: Array, required: true},
+    Clicks: {type:String, required: true, default:0},
+    TotalReviews: {type: Number, required: true, default: 1}
 });
+
+
 
 export default mongoose.model('Recipes', recipeSchema);
