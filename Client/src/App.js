@@ -1,9 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
-import TasteSlider from "./TasteSliders";
+import './index.css';
 import React from "react";
-import LoginBar from "./LoginBar";
-import FoodSearch from "./FoodSearch";
+import LoginBar from "./Components/LoginComponents/LoginBar";
+import FoodSearch from "./Components/SearchComponents/FoodSearch";
+//import AddRecipe from "./Components/CreateRecipeComponents/AddRecipe";
 
 function App() {
   return (
@@ -11,6 +11,9 @@ function App() {
 
         <LoginBar/>
         <FoodSearch/>
+
+
+        {/*<AddRecipe/>*/}
 
     </div>
   );
