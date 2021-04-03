@@ -6,6 +6,7 @@ import path from 'path'
 import morgan from 'morgan'
 import cookieParser from 'cookie-parser'
 import recipeRouter from "./Routes/RecipeRoutes.js";
+import userRouter from "./Routes/UserRoutes.js"
 
 dotenv.config();
 
@@ -30,7 +31,7 @@ app.use(cookieParser());
 
 app.use(bodyParser.json());
 
-//app.use('/client', clientRouter);
+app.use('/user', userRouter);
 app.use('/recipe', recipeRouter)
 
 const dir = path.resolve(path.dirname(''));
