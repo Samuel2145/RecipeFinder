@@ -8,46 +8,41 @@ const HomeSidebar = (props) => {
 
     const [loggedIn, setLoggedIn] = useState(false)
     const [options, setOptions] = useState([])
+    const [Username, setUsername] = useState("")
 
 
     useEffect( () =>{
 
-        axios.get("/user/getInfo", {withCredentials:true}).then( (res) => {
+        axios.get("/user/GetOptions", {withCredentials:true}).then( (res) => {
 
             console.log(res);
-            setLoggedIn(true);
             setOptions(res.data.Options);
+            if(res.data.User){
+                setLoggedIn(true);
+                setUsername(res.data.User.Username)
+            }
 
-        }).catch(
 
-        )
-
+        }).catch( (err) => {
+            console.log(err);
+        });
 
     },[])
 
 
     return (
-        <div className={"flex flex-col space-y-4 font-serif text-black italic p-4 bg-gray-100"}>
+        <div className={"flex flex-col font-serif text-black p-4 bg-gray-100"}>
 
             <h1 className={"text-3xl"}>
                 Recipe Bazaar
             </h1>
 
-            {loggedIn?<LoggedIn/>:<LoggedOut/>}
+            <div className={"my-24"}>
+                {loggedIn?<LoggedIn user={Username}/>:<LoggedOut/>}
+            </div>
 
             <div>
                 <ul>
-                    <li>
-                        <a href={"/search"}>
-                            Search
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href={"/topRecipes"}>
-                            Recommended
-                        </a>
-                    </li>
 
                     {options.map( (element) => {
 
@@ -60,7 +55,6 @@ const HomeSidebar = (props) => {
                         )
 
                     })}
-
 
                 </ul>
             </div>

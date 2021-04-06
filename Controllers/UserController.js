@@ -70,26 +70,36 @@ export const userLogout = (req, res) => {
     res.send('Successfully logged out');
 }
 
-export const getInfo = (req, res) => {
+export const getOptions = (req, res) => {
+
+    const loggedOutOptions = [
+        {Item: 'Search', Link:'/Search'},
+        {Item: 'Recommended', Link:'/TopRecipes'}
+    ];
 
     if(!req.cookies.UserInfo){
-        res.status(400).send('Not logged in!')
+
+        const loggedOutPacket = {
+            Options: loggedOutOptions
+        };
+
+        res.status(200).send(loggedOutPacket);
         return;
     }
 
     const userData = jwt.verify(req.cookies.UserInfo, 'shhhhh');
 
-    const options = [
-        {Item: 'My Recipes', Link:'/myRecipes'},
-        {Item: 'Add Recipe', Link:'/newRecipe'},
+    const loggedInOptions = [
+        {Item: 'My Recipes', Link:'/MyRecipes'},
+        {Item: 'Add Recipe', Link:'/NewRecipe'},
         {Item: 'Trades', Link:'/trades'},
         {Item: 'About', Link:'/about'}
-    ]
+    ];
 
-    const Packet = {
-        Options: options,
+    const loggedInPacket = {
+        Options: loggedOutOptions.concat(loggedInOptions),
         User: userData
-    }
+    };
 
-    res.status(200).send(Packet);
+    res.status(200).send(loggedInPacket);
 }

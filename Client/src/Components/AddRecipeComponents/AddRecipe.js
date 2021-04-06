@@ -58,7 +58,7 @@ const AddRecipe = () => {
 
                 <h1 className="block w-full text-center text-grey-darkest mb-6">Create-A-Recipe</h1>
 
-                <form className="mb-4 md:flex md:flex-wrap md:justify-between" action="/" method="post">
+                <form className="flex flex-col item-center mb-4" action="/" method="post">
 
                     <div className="flex flex-col mb-4 md:w-full">
                         <textarea className="border py-2 px-3 text-grey-darkest rounded-lg"
@@ -74,31 +74,34 @@ const AddRecipe = () => {
                         />
                     </div>
 
-                    <div className="flex flex-col mx-1 mb-6 md:w-1/6">
-                        <label className="text-center">{"Umami"}</label>
-                        <TasteButton name={"Umami"} value={Umami} setValue={newUmami}/>
-                    </div>
+                    <div className={"flex flex-row w-full"}>
 
-                    <div className="flex flex-col mx-1 mb-6 md:w-1/6">
-                        <label className="text-center">{"Sweet"}</label>
-                        <TasteButton name={"Sweet"} value={Sweet} setValue={newSweet}/>
-                    </div>
+                        <div className="flex flex-col mx-1 mb-6 md:w-1/6">
+                            <label className="text-center">{"Umami"}</label>
+                            <TasteButton name={"Umami"} value={Umami} setValue={newUmami}/>
+                        </div>
 
-                    <div className="flex flex-col mx-1 mb-6 md:w-1/6">
-                        <label className="text-center">{"Sour"}</label>
-                        <TasteButton name={"Sour"} value={Sour} setValue={newSour}/>
-                    </div>
+                        <div className="flex flex-col mx-1 mb-6 md:w-1/6">
+                            <label className="text-center">{"Sweet"}</label>
+                            <TasteButton name={"Sweet"} value={Sweet} setValue={newSweet}/>
+                        </div>
 
-                    <div className="flex flex-col mx-1 mb-6 md:w-1/6">
-                        <label className="text-center">{"Bitter"}</label>
-                        <TasteButton name={"Bitter"} value={Bitter} setValue={newBitter}/>
-                    </div>
+                        <div className="flex flex-col mx-1 mb-6 md:w-1/6">
+                            <label className="text-center">{"Sour"}</label>
+                            <TasteButton name={"Sour"} value={Sour} setValue={newSour}/>
+                        </div>
 
-                    <div className="flex flex-col mx-1 mb-6 md:w-1/6">
-                        <label className="text-center">{"Salty"}</label>
-                        <TasteButton name={"Salty"} value={Salty} setValue={newSalty}/>
-                    </div>
+                        <div className="flex flex-col mx-1 mb-6 md:w-1/6">
+                            <label className="text-center">{"Bitter"}</label>
+                            <TasteButton name={"Bitter"} value={Bitter} setValue={newBitter}/>
+                        </div>
 
+                        <div className="flex flex-col mx-1 mb-6 md:w-1/6">
+                            <label className="text-center">{"Salty"}</label>
+                            <TasteButton name={"Salty"} value={Salty} setValue={newSalty}/>
+                        </div>
+
+                    </div>
 
                     <div className="flex flex-col mb-6 md:w-full">
                         <label className="mb-2 text-lg text-grey-darkest">Ingredients</label>
@@ -116,7 +119,7 @@ const AddRecipe = () => {
                         />
                     </div>
 
-                    <button className="block bg-gradient-to-br from-yellow-400 to-yellow-700 text-white uppercase text-lg mx-auto p-4 rounded" type="text" onClick={submitHandler}>
+                    <button className={"bg-blue-700 px-5 py-3 m-1 rounded-full text-white hover:bg-blue-800"} type="text" onClick={submitHandler}>
                         Submit for review
                     </button>
                 </form>

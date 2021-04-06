@@ -9,27 +9,29 @@ import CreateAccountForm from "./Components/HomeSidebarComponents/CreateAccountF
 import SignInForm from "./Components/HomeSidebarComponents/SignInForm";
 
 function App() {
-  return (
-    <div className={"flex flex-row"}>
+    return (
+      
 
-        <HomeSidebar/>
+        <div className={"flex flex-row bg-gray-50"}>
 
-        <Router>
-            <Switch>
+            <HomeSidebar/>
 
-                {/*<Route exact path={"/"} component={}/>*/}
-                <Route path={"/Search"} component={FoodSearch}/>
-                <Route path={"/CreateUser"} component={CreateAccountForm}/>
-                <Route path={"/newRecipe"} component={AddRecipe}/>
-                <Route path={"/SignIn"} component={SignInForm}/>
+            <Router>
+                <Switch>
+
+                    {/*<Route exact path={"/"} component={}/>*/}
+                    <Route path={"/Search"} component={FoodSearch}/>
+                    <Route path={"/CreateUser"} component={CreateAccountForm}/>
+                    <Route path={"/NewRecipe"} component={AddRecipe}/>
+                    <Route path={"/SignIn"} component={SignInForm}/>
 
 
-            </Switch>
+                </Switch>
 
-        </Router>
+            </Router>
 
-    </div>
-  );
+        </div>
+    );
 }
 
 export default App;

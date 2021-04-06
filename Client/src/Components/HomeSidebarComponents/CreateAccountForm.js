@@ -35,7 +35,7 @@ const CreateAccountForm = (props) => {
 
                 <h1 className="block w-full text-center text-grey-darkest mb-6">Create Account</h1>
 
-                <form className="mb-4 md:flex md:flex-wrap md:justify-between">
+                <form className="flex flex-col items-center mb-4">
 
                     <div className="flex flex-col mb-4 md:w-full">
                         <input className="border py-2 px-3 text-grey-darkest rounded-lg"
@@ -58,10 +58,12 @@ const CreateAccountForm = (props) => {
                         />
                     </div>
 
-                    <button className="block bg-gradient-to-br from-yellow-400 to-yellow-700 text-white uppercase text-lg mx-auto p-4 rounded" type="text" onClick={creationHandler}>
+                    <button className={"bg-blue-700 px-5 py-3 m-1 rounded-full text-white hover:bg-blue-800"} type="text" onClick={creationHandler}>
                         Create Account
                     </button>
+
                 </form>
+
             </div>
         </div>
 
