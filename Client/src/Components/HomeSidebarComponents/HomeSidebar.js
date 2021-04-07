@@ -29,9 +29,12 @@ const HomeSidebar = (props) => {
 
     },[])
 
+    const Hide = (e) => {
+        props.setHide(false);
+    }
 
     return (
-        <div className={"flex flex-col font-serif text-black p-4 bg-gray-100"}>
+        <div className={"flex flex-col font-serif text-black p-4 bg-gray-100 " + props.hidden}>
 
             <h1 className={"text-3xl"}>
                 Recipe Bazaar
@@ -58,6 +61,10 @@ const HomeSidebar = (props) => {
 
                 </ul>
             </div>
+
+            <button className={"bg-blue-700 px-5 py-3 m-1 rounded-full hover:bg-blue-800 text-white"} onClick={Hide}>
+                Hide
+            </button>
 
 
 
