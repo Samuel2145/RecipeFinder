@@ -1,4 +1,5 @@
 import Recipes from "../Schemas/Recipe.js";
+import jwt from "jsonwebtoken";
 
 /*
 *   Create recipe, require all fields, even if they're empty (Recipe, Ingredients, Description).
@@ -7,20 +8,21 @@ import Recipes from "../Schemas/Recipe.js";
 
 export const createRecipe = (req, res) => {
 
-    //console.log(req.body.Recipe)
+    //It is expected that this token will be there, given that the addRecipe form can only be accessed if logged in
+    const userData = jwt.verify(req.cookies.UserInfo, 'shhhhh');
 
-    const recipe = req.body.Recipe;
+    console.log(req.body.NewRecipe)
+
+    const recipe = req.body.NewRecipe;
 
     const newEntry = new Recipes({
+        Owner: userData.Username,
         Name: recipe.Name,
-        Umami: {calcValue : recipe.Umami, realValue: recipe.Umami},
-        Bitter: {calcValue : recipe.Bitter, realValue: recipe.Bitter},
-        Sour: {calcValue : recipe.Sour, realValue: recipe.Sour},
-        Salty: {calcValue : recipe.Salty, realValue: recipe.Salty},
-        Sweet: {calcValue : recipe.Sweet, realValue: recipe.Sweet},
         Description: recipe.Description,
+        Cuisine: recipe.Cuisine,
+        Tags: recipe.TagList,
         Ingredients: recipe.Ingredients,
-        Recipe: recipe.Recipe
+        Recipe: recipe.Steps
     })
 
     newEntry.save( (err) => {
@@ -39,6 +41,8 @@ export const createRecipe = (req, res) => {
 *   Function to find recipes based on values for five tastes
 *
 *   (Eventually need to update to account for extra filters, so try to make it extendable)
+*
+*   Redo this shit boiiii.
 *
 */
 export const getRecipes = (req, res) => {
@@ -82,6 +86,9 @@ export const getRecipes = (req, res) => {
 
 /*
 *   Finds the most clicked recipes (most popular) in the database and returns them to be displayed upon loading of FoodSearch component
+*
+*   This is outdated, will have to redo given changes to db and eventually Frontend
+*
  */
 
 export const getTopRecipes = (req, res) => {
@@ -102,5 +109,16 @@ export const getTopRecipes = (req, res) => {
 
     });
 
+
+}
+
+export const getCuisineTypes = (req,res) => {
+
+
+    const CuisineList = ["Italian", "Mexican", "Indian", "American", "Spanish", "French", "Ethiopian",
+        "Mediterranean", "Brazilian", "Colombian", "Puerto Rican", "Moroccan", "Lebanese", "Turkish",
+        "English", "Scandinavian", "Argentinian", "Japanese", "Chinese"]
+
+    res.status(200).send(CuisineList);
 
 }
